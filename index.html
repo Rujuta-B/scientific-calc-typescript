@@ -1,0 +1,141 @@
+<!-- rujuta -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link rel="icon" type="image/x-icon" href="./icons/favicon.ico">
+    <link rel="stylesheet" href="./style.css" id="theme"/>
+    <title>Scientific Calculator for web</title>
+</head>
+<body>
+    
+    <div class="container">
+        
+        <div class="calc-body">
+            <!-- Display Screen -->
+        <input class="display-screen" type="text" placeholder="0" />
+        <input class="pr-3 sub_input text-muted text-right" onclick="Review()" id="sub_display" readonly />
+            <!-- grid-container -->
+            <div class="grid-container">
+                <!-- DEG RAD -->
+                <button data-sign="deg" class="deg active degrees num-btn" id="deg"  onclick=degtorad()>DEG</button>
+                <button data-sign="rad" class="rad">RAD</button>
+                <button data-sign="f-e" class="f-e grid-2 btn" style="padding:1px; ;">F-E</button>
+                
+
+                <!-- MC row-->
+                <button data-sign="mc" class="memory grey-text" id="mc">MC</button>
+                <button data-sign="mr" class="memory grey-text" id="mr">MR</button>
+                <button data-sign="mplus" id="m+ memory">M+</button>
+                <button data-sign="mminus" id="m- memory">M-</button>
+                <button data-sign="ms" id="ms memory">MS</button>
+
+
+                <!-- trigo and func -->
+               
+                <!-- for trigo dropdown -->
+                <div class="dropdown" id="trigo">
+                    
+                    <a class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        &#8895; Trigonometry
+                    </a><ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                        <li><button data-sign="sin"  class="dropdown-item button1 trigino_&_Fun">&nbsp &nbsp  sin</button></li>
+                        <li><button data-sign="cos" class="dropdown-item button1 trigino_&_Fun">&nbsp &nbsp   cos</button></li>
+                        <li><button data-sign="tan" class="dropdown-item button1 trigino_&_Fun"> &nbsp &nbsp tan</button></li>
+                        <li><button data-sign="sinh" class="dropdown-item button1 trigino_&_Fun">&nbsp &nbsp cosec</button></li>
+                        <li><button data-sign="cosh" class="dropdown-item button1 trigino_&_Fun">&nbsp &nbsp sec</button></li>
+                        <li><button data-sign="tanh" class="dropdown-item button1 trigino_&_Fun">&nbsp &nbsp cot</button></li>
+                      </ul>
+
+                </div>
+            
+                <!-- for function dropdown -->
+                <div class="dropdown" id="func">
+                   
+                    <a class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                        ⨍  Functions
+                    </a>
+
+
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                      <li><button data-sign="abs" class="dropdown-item button1 trigino_&_Fun">   &nbsp &nbsp abs</button></li>
+                      <li><button data-sign="round" class="dropdown-item button1 trigino_&_Fun" >&nbsp &nbsp round</button></li>
+                      <li><button data-sign="floor" class="dropdown-item button1 trigino_&_Fun"> &nbsp &nbsp floor</button></li>
+                      <li><button data-sign="ceil" class="dropdown-item button1 trigino_&_Fun">  &nbsp &nbsp ceil</button></li>
+                      <li><button data-sign="trunc" class="dropdown-item button1 trigino_&_Fun"> &nbsp &nbsp trunc</button></li>
+                      <li><button data-sign="random" class="dropdown-item button1 trigino_&_Fun">&nbsp &nbsp random</button></li>
+                      <li><button data-sign="sign" class="dropdown-item button1 trigino_&_Fun">  &nbsp &nbsp sign</button></li>
+                    </ul>
+
+                </div>
+
+                <!--  -->
+                <!-- Row 1 -->
+                    <button data-sign="2nd" id="btn2nd">2<sup data-sign="2nd">nd</sup></button>
+                    <button data-sign="π" class="btn btn_clr">&#960;</button>
+                    <button data-sign="e" class="btn btn_clr">e</button>
+                    <button data-sign="C" class="clear-btn btn_clr" onclick="clear()" >C</button>
+                    <button data-sign="dlt" class="clear-btn btn_clr" onclick="del()">&#x232b;</button>
+                    <!-- Row 2 -->
+                    <button data-sign="square" class="bfr active btn btn_clr">x<sup data-sign="square">2</sup></button>
+                    <button data-sign="epowerx" class="afr btn btn_clr">e<sup data-sign="epowerx">x</sup></button>
+                    <button data-sign="1/x" class="btn btn_clr">⅟x</button>
+                    <button data-sign="|x|" class="btn btn_clr">|x|</button>
+                    <button data-sign="expression" class="btn btn_clr">exp</button>
+                    <button data-sign="%" class="btn btn_clr">mod</button>
+                    <!-- Row 3-->
+                    <button data-sign="sqrt" class="bfr active btn btn_clr">&#x221A;x</button>
+                    <button data-sign="log base" class="afr btn_clr">log<sub data-sign="log base">y</sub>x</button>
+                    <button data-sign="(" class="btn btn_clr">(</button>
+                    <button data-sign=")" class="btn btn_clr">)</button>
+                    <button data-sign="fact" class="btn btn_clr">n!</button>
+                    <button data-sign="/" class="btn btn_clr">÷</button>
+                    <!-- Row 4 -->
+                    <button data-sign="^" class="bfr active btn btn_clr">x<sup data-sign="^">y</sup></button>
+                    <button data-sign="2raisex" class="afr btn btn_clr">2<sup data-sign="2raisex">x</sup></button>
+                    <button data-sign="7" class="bold btn btn-light digits_btn">7</button>
+                    <button data-sign="8" class="bold btn btn-light digits_btn">8</button>
+                    <button data-sign="9" class="bold btn btn-light digits_btn">9</button>
+                    <button data-sign="*" class=" btn btn_clr">&#215;</button>
+                    <!-- Row 5 -->
+                    <button data-sign="10powerx" class="bfr active btn btn_clr">10<sup data-sign="10powerx">x</sup></button>
+                    <button data-sign="yroot" class="afr btn btn_clr"><sup data-sign="yroot">y</sup>√x</button>
+                    <button data-sign="4" class="bold btn btn-light digits_btn">4</button>
+                    <button data-sign="5" class="bold btn btn-light digits_btn">5</button>
+                    <button data-sign="6" class="bold btn btn-light digits_btn">6</button>
+                    <button data-sign="-" class="btn btn_clr">-</button>
+                    <!-- Row 6 -->
+                    <button data-sign="log" class="bfr active btn btn_clr">log</button>
+                    <button data-sign="cbrt" class="afr btn btn_clr">&#x221B;x</button>
+                    <button data-sign="1" class="bold btn btn-light digits_btn" >1</button>
+                    <button data-sign="2" class="bold btn btn-light digits_btn">2</button>
+                    <button data-sign="3" class="bold btn btn-light digits_btn">3</button>
+                    <button data-sign="+" class="btn btn_clr">+</button>
+                    <!-- Row 7 -->
+                    <button data-sign="ln"  class="bfr active btn btn_clr">ln</button>
+                    <button data-sign="cube" class="afr btn btn_clr">x<sup data-sign="cube">3</sup></button>
+                    <button data-sign="+/-" class="bold btn btn-light">+/-</button>
+                    <button data-sign="0" class="bold btn btn-light digits_btn">0</button>
+                    <button data-sign="." class="bold btn btn-light">.</button>
+                    <button data-sign="=" class="btn btn_clr equal-to-sign">=</button> 
+
+
+
+            </div>
+            
+         </div>
+         
+    </div>
+    
+    
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mnjs/browser/index.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/mnjs/browser/index.js"></script> -->
+    <script src="./script.js"></script>
+</body>
+</html>
